@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+    <link rel="stylesheet" href="http://localhost:8889/main.css">
+
+</head>
+<body>
+
+    <textarea id="code_snippet" name="code_snippet" placeholder="// write your code here"></textarea>
+    <br>
+    Time: <input id="time_restriction" type="text" value="0"/>
+    <br>
+    Views: <input id="views_restriction" type="text" value="0"/>
+    <button id="send_snippet" type = "submit" onclick="send()">Create</button>
+    <script>
+        function send() {
+    let object = {
+        "code": document.getElementById("code_snippet").value,
+        "time": document.getElementById("code_snippet").value,
+        "views": document.getElementById("views_restriction").value
+    };
+
+    let json = JSON.stringify(object);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", '/api/code/new', false)
+    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhr.send(json);
+
+    if (xhr.status == 200) {
+      alert("Success!");
+    }
+}
+    </script>
+</body>
+</html>
